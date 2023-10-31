@@ -43,12 +43,14 @@ export default function App() {
   return (
     <>
       <div className="mx-auto w-1/2">
-        <h1 className="text-center text-5xl mt-6">{score}</h1>
-        <div className="grid grid-cols-3 border mt-6">
+        <h1 className="text-center text-3xl mt-6">Score: {score}</h1>
+        <div className="grid grid-cols-3 border mt-6 w-[20em] mx-auto select-none">
           {moles.map((isMole, index) => {
             return (
               <div
-                className="text-5xl w-fit"
+                className={`text-8xl w-9em text-center border ${
+                  isMole ? "bg-[#d2b48c]" : "bg-green-700"
+                }`}
                 key={index}
                 onClick={() => handleClick(index)}
               >
