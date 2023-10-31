@@ -32,8 +32,8 @@ export default function App() {
       setMoleVisibility(randomIndex, true);
       setTimeout(() => {
         setMoleVisibility(randomIndex, false);
-      }, 700);
-    }, 1000);
+      }, 500);
+    }, 600);
 
     return () => {
       clearInterval(interval);
