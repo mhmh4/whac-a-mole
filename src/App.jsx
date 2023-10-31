@@ -26,6 +26,9 @@ export default function App() {
   }, [moles]);
 
   function onClick(index) {
+    if (!moles[index]) {
+      return;
+    }
     const newMoles = [...moles];
     newMoles[index] = false;
     setScore(score + 1);
