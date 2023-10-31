@@ -14,9 +14,7 @@ export default function App() {
   return (
     <>
       <div className="grid grid-cols-3 mx-auto w-1/2 border mt-6">
-        {moles.map((isMole) => {
-          isMole ? <Mole /> : <Hole />;
-        })}
+        {moles.map((isMole) => (isMole ? <Mole /> : <Hole />))}
       </div>
     </>
   );
