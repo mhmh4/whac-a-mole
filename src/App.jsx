@@ -24,11 +24,26 @@ export default function App() {
     };
   }, [moles]);
 
+  function onClick(index) {
+    const newMoles = [...moles];
+    newMoles[index] = false;
+    setMoles(newMoles);
+  }
+
   return (
     <>
       <div className="grid grid-cols-3 mx-auto w-1/2 border mt-6">
         {moles.map((isMole, index) => {
-          return <div key={index}>{isMole ? <Mole /> : <Hole />}</div>;
+          return (
+            <div
+              key={index}
+              onClick={() => {
+                onClick(index);
+              }}
+            >
+              {isMole ? <Mole /> : <Hole />}
+            </div>
+          );
         })}
       </div>
     </>
