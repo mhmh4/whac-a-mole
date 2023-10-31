@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Mole() {
   return <div>M</div>;
@@ -10,6 +10,19 @@ function Hole() {
 
 export default function App() {
   const [moles, setMoles] = useState(new Array(9).fill(false));
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const randomIndex = Math.floor(Math.random() * moles.length);
+      const newMoles = [...moles];
+      newMoles[randomIndex] = true;
+      setMoles(newMoles);
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
 
   return (
     <>
