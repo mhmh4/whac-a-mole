@@ -22,7 +22,7 @@ export default function App() {
     return () => {
       clearInterval(interval);
     };
-  }, []);
+  }, [moles]);
 
   return (
     <>
