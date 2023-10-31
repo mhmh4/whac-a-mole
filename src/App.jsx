@@ -1,39 +1,44 @@
 import { useEffect, useState } from "react";
 
 function Mole() {
-  return <div>M</div>;
+  return "M";
 }
 
 function Hole() {
-  return <div>H</div>;
+  return "H";
 }
 
 export default function App() {
   const [moles, setMoles] = useState(new Array(9).fill(false));
   const [score, setScore] = useState(0);
 
+  function setMoleVisibility(index, isVisibile) {
+    setMoles((curMoles) => {
+      const newMoles = [...curMoles];
+      newMoles[index] = isVisibile;
+      return newMoles;
+    });
+  }
+
+  function handleClick(index) {
+    if (!moles[index]) return;
+    setMoleVisibility(index, false);
+    setScore(score + 1);
+  }
+
   useEffect(() => {
     const interval = setInterval(() => {
       const randomIndex = Math.floor(Math.random() * moles.length);
-      const newMoles = [...moles];
-      newMoles[randomIndex] = true;
-      setMoles(newMoles);
+      setMoleVisibility(randomIndex, true);
+      setTimeout(() => {
+        setMoleVisibility(randomIndex, false);
+      }, 700);
     }, 1000);
 
     return () => {
       clearInterval(interval);
     };
   }, [moles]);
-
-  function onClick(index) {
-    if (!moles[index]) {
-      return;
-    }
-    const newMoles = [...moles];
-    newMoles[index] = false;
-    setScore(score + 1);
-    setMoles(newMoles);
-  }
 
   return (
     <>
@@ -43,10 +48,9 @@ export default function App() {
           {moles.map((isMole, index) => {
             return (
               <div
+                className="text-5xl w-fit"
                 key={index}
-                onClick={() => {
-                  onClick(index);
-                }}
+                onClick={() => handleClick(index)}
               >
                 {isMole ? <Mole /> : <Hole />}
               </div>
